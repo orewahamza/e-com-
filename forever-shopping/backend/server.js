@@ -33,11 +33,21 @@ app.use('/api/product', productRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/order', orderRouter);
 
+// Serve Admin Panel (Static Files)
+app.use('/admin', express.static(path.join(__dirname, '../admin/dist')));
+
+// Serve Frontend (Static Files)
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 
+// Handle Admin Routing (SPA Fallback)
+app.get('/admin/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../admin/dist/index.html'));
+});
 
-app.get('/', (req, res) => {
-    res.send('API Is Working Properly');
+// Handle Frontend Routing (SPA Fallback) - Must be last
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
 

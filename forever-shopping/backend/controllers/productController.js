@@ -152,32 +152,11 @@ const createProduct = addProduct;
 
 
 // function for list product
-import { sampleProducts } from '../utils/sampleData.js';
-
 const listProducts = async (req, res) => {
     try {
         console.log("Fetching all products...");
-        let products = await productModel.find({});
-
-        // Auto-seed if empty
-        if (products.length === 0) {
-            console.log("No products found. Seeding default products...");
-            try {
-                // Ensure date is set for each product
-                const toInsert = sampleProducts.map(p => ({
-                    ...p,
-                    date: new Date()
-                }));
-                await productModel.insertMany(toInsert);
-                products = await productModel.find({});
-                console.log(`Seeded and found ${products.length} products`);
-            } catch (seedError) {
-                console.error("Error seeding default products:", seedError);
-            }
-        } else {
-            console.log(`Found ${products.length} products`);
-        }
-        
+        const products = await productModel.find({});
+        console.log(`Found ${products.length} products`);
         res.json({ success: true, products });
     } catch (error) {
         console.error("Error fetching products:", error);

@@ -46,12 +46,12 @@ app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 
 // Handle Admin Routing (SPA Fallback)
-app.get('/admin/*', (req, res) => {
+app.get(/^\/admin\/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, '../admin/dist/index.html'));
 });
 
 // Handle Frontend Routing (SPA Fallback) - Must be last
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 

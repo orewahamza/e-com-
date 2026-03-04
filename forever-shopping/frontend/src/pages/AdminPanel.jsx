@@ -1,6 +1,8 @@
 import { useContext, useEffect } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 import { ShopContext } from "../context/ShopContext";
+import Loading from "../components/Loading";
 
 const AdminPanel = () => {
   const { token, backendUrl, userType } = useContext(ShopContext);
@@ -52,9 +54,7 @@ const AdminPanel = () => {
       </Helmet>
       <Loading />
       <p className="mt-4 text-brand-blue-300">Redirecting to Host Panel…</p>
-    </div>
-  );
-};      <a className="underline" href={adminUrl}>
+      <a className="underline" href={adminUrl}>
         Click here if you are not redirected
       </a>
     </div>

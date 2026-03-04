@@ -130,18 +130,24 @@ const ShopContextProvider = (props) => {
   // Fetch products data from the backend
   const getProductsData = async () => {
     try {
+      console.log("Fetching products from:", backendUrl + "/api/product/list");
       const response = await axios.get(backendUrl + "/api/product/list");
+      console.log("Product fetch response:", response.data);
 
       if (response.data.success) {
-        let productsList = response.data.products || [];
-        // Filter out drafts (unpublished products) for everyone on the frontend
-        productsList = productsList.filter(p => p && p.isPublished !== false);
+        let productsList = response.data.products;
+        // If products are undefined, try checking other common response structures or default to empty
+        if (!productsList) {
+             console.warn("API returned success but no 'products' field found:", response.data);
+             productsList = [];
+        }
+        
         setProducts(productsList);
       } else {
         toast.error(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching products:", error);
       toast.error(error.message);
     }
   };
@@ -184,7 +190,7 @@ const ShopContextProvider = (props) => {
 
   useEffect(() => {
     getProductsData();
-  }, [userType]);
+  }, []);
 
   useEffect(() => {
     if (!token && localStorage.getItem("token")) {

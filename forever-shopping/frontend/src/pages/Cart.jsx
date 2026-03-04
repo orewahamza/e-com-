@@ -101,11 +101,15 @@ const Cart = () => {
               className="py-4 border-t border-b text-brand-blue-300 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4"
             >
               <div className="flex items-start gap-6">
-                <img
-                  className="w-16 sm:w-20 border border-white/40 rounded-sm"
-                  src={productData.image[0]}
-                  alt=""
-                />
+                <div className="w-16 sm:w-20 bg-gradient-brand p-[1px] rounded-sm flex-shrink-0">
+                  <div className="bg-white rounded-sm overflow-hidden">
+                    <img
+                      className="w-full"
+                      src={productData.image[0]}
+                      alt=""
+                    />
+                  </div>
+                </div>
 
                 <div>
                   <p className="text-xs sm:text-lg font-medium text-brand-blue-50">

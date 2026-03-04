@@ -70,26 +70,36 @@ const Product = () => {
         <div className="flex-1 flex flex-col-reverse gap-3 sm:flex-row">
           <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full">
             {images.map((item, index) => (
-              <img
+              <div 
+                key={index} 
+                className="w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer bg-gradient-brand p-[1px] rounded-sm"
                 onClick={() => setImage(item)}
-                src={transformCloudinaryUrl(item, { width: 160 })}
-                loading="lazy"
-                key={index}
-                className="w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer border border-white/40 rounded-sm"
-                alt="product_image"
-              />
+              >
+                <div className="bg-white rounded-sm overflow-hidden h-full">
+                  <img
+                    src={transformCloudinaryUrl(item, { width: 160 })}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                    alt="product_image"
+                  />
+                </div>
+              </div>
             ))}
           </div>
 
           <div className="w-full sm:w-[80%]">
-            <img
-              src={transformCloudinaryUrl(image, { width: 960 })}
-              srcSet={buildSrcSet(image, [480, 640, 800, 960, 1200])}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 50vw"
-              className="w-full h-auto border border-white/40 rounded-sm"
-              alt="product_img"
-              onError={(e) => { e.currentTarget.src = image; }}
-            />
+            <div className="bg-gradient-brand p-[1.5px] rounded-md">
+              <div className="bg-white rounded-md overflow-hidden">
+                <img
+                  src={transformCloudinaryUrl(image, { width: 960 })}
+                  srcSet={buildSrcSet(image, [480, 640, 800, 960, 1200])}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 50vw"
+                  className="w-full h-auto"
+                  alt="product_img"
+                  onError={(e) => { e.currentTarget.src = image; }}
+                />
+              </div>
+            </div>
           </div>
         </div>
 

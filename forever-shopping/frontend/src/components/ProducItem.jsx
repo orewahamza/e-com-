@@ -18,9 +18,9 @@ const ProducItem = ({ id, image, name, price }) => {
       to={`/product/${id}`}
       onClick={handleClick}
     >
-      <div className="overflow-hidden">
+      <div className="overflow-hidden border border-gray-200 rounded-sm">
         <img
-          className="hover:scale-110 transition ease-out"
+          className="hover:scale-110 transition ease-out w-full"
           src={transformCloudinaryUrl(primary, { width: 640 })}
           srcSet={buildSrcSet(primary, [320, 480, 640, 800, 1024])}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"

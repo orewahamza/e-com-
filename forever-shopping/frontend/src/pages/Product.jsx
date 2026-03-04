@@ -75,18 +75,18 @@ const Product = () => {
                 src={transformCloudinaryUrl(item, { width: 160 })}
                 loading="lazy"
                 key={index}
-                className="w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer"
+                className="w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer border border-gray-200 rounded-sm"
                 alt="product_image"
               />
             ))}
           </div>
 
-          <div className="w-4 sm:w-[80%]">
+          <div className="w-full sm:w-[80%]">
             <img
               src={transformCloudinaryUrl(image, { width: 960 })}
               srcSet={buildSrcSet(image, [480, 640, 800, 960, 1200])}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 50vw"
-              className="w-full h-auto"
+              className="w-full h-auto border border-gray-200 rounded-sm"
               alt="product_img"
               onError={(e) => { e.currentTarget.src = image; }}
             />

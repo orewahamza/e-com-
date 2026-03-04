@@ -154,9 +154,12 @@ const createProduct = addProduct;
 // function for list product
 const listProducts = async (req, res) => {
     try {
+        console.log("Fetching all products...");
         const products = await productModel.find({});
+        console.log(`Found ${products.length} products`);
         res.json({ success: true, products });
     } catch (error) {
+        console.error("Error fetching products:", error);
         res.status(500).json({ success: false, message: error.message });
     }
 }

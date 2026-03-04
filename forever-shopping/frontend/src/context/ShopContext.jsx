@@ -132,18 +132,19 @@ const ShopContextProvider = (props) => {
     try {
       console.log("Fetching products from:", backendUrl + "/api/product/list");
       const response = await axios.get(backendUrl + "/api/product/list");
-      console.log("Product fetch response:", response.data);
+      console.log("Product fetch response:", JSON.stringify(response.data, null, 2));
 
       if (response.data.success) {
         let productsList = response.data.products;
         // If products are undefined, try checking other common response structures or default to empty
         if (!productsList) {
-             console.warn("API returned success but no 'products' field found:", response.data);
+             console.warn("API returned success but no 'products' field found:", JSON.stringify(response.data, null, 2));
              productsList = [];
         }
         
         setProducts(productsList);
       } else {
+        console.error("API Error:", response.data.message);
         toast.error(response.data.message);
       }
     } catch (error) {

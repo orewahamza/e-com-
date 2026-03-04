@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-export const backendUrl = import.meta.env.VITE_BACKEND_URL || (import.meta.env.DEV ? 'http://localhost:4000' : '');
+export const backendUrl = import.meta.env.VITE_BACKEND_URL || "";
 export const currency = '৳';
 export const frontendUrl = import.meta.env.VITE_FRONTEND_URL || (import.meta.env.DEV ? 'http://localhost:5173' : '');
 

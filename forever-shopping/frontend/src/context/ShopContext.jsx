@@ -11,7 +11,7 @@ const ShopContextProvider = (props) => {
   const delivery_fee = 10;
 
   // backendUrl from env with sensible dev fallback
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || (import.meta.env.DEV ? "http://localhost:5000" : "");
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || "";
 
   // for searching state
   const [search, setSearch] = useState("");

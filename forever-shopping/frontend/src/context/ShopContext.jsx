@@ -24,7 +24,7 @@ const ShopContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || "user");
   const [userType, setUserType] = useState(localStorage.getItem("userType") || "user");
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [isGoogleAuth, setIsGoogleAuth] = useState(false);
@@ -138,10 +138,10 @@ const ShopContextProvider = (props) => {
         let productsList = response.data.products;
         // If products are undefined, try checking other common response structures or default to empty
         if (!productsList) {
-             console.warn("API returned success but no 'products' field found:", JSON.stringify(response.data, null, 2));
-             productsList = [];
+          console.warn("API returned success but no 'products' field found:", JSON.stringify(response.data, null, 2));
+          productsList = [];
         }
-        
+
         setProducts(productsList);
       } else {
         console.error("API Error:", response.data.message);

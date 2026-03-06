@@ -21,7 +21,11 @@ const PlaceOrder = lazy(() => import("./pages/PlaceOrder"));
 const Orders = lazy(() => import("./pages/Orders"));
 const Verify = lazy(() => import("./pages/Verify"));
 const Profile = lazy(() => import("./pages/Profile"));
-const AdminPanel = lazy(() => import("./pages/AdminPanel"));
+const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
+const AdminAdd = lazy(() => import("./pages/admin/Add"));
+const AdminList = lazy(() => import("./pages/admin/List"));
+const AdminOrders = lazy(() => import("./pages/admin/Orders"));
+const AdminEdit = lazy(() => import("./pages/admin/Edit"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 
@@ -73,7 +77,14 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-            <Route path="/host-panel" element={<AdminPanel />} />
+            {/* Host Panel logic */}
+            <Route path="/host" element={<AdminLayout />}>
+              <Route index element={<Navigate to="list" replace />} />
+              <Route path="add" element={<AdminAdd />} />
+              <Route path="list" element={<AdminList />} />
+              <Route path="orders" element={<AdminOrders />} />
+              <Route path="edit/:id" element={<AdminEdit />} />
+            </Route>
 
             {/* Orders & payment */}
             <Route path="/place-order" element={<PlaceOrder />} />

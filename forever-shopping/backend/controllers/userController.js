@@ -330,29 +330,46 @@ const maybeInitFirebase = () => {
             const projectId = process.env.FIREBASE_PROJECT_ID;
             const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
             let privateKey = process.env.FIREBASE_PRIVATE_KEY;
+            
+            console.log(`[Firebase] Init attempt. Project: ${projectId}, Email: ${clientEmail}, Key length: ${privateKey ? privateKey.length : 0}`);
+
             if (projectId && clientEmail && privateKey) {
+                // Handle both literal \n and actual newlines
                 privateKey = privateKey.replace(/\\n/g, '\n');
+                
                 admin.initializeApp({
                     credential: admin.credential.cert({ projectId, clientEmail, privateKey })
                 });
+                console.log('[Firebase] Initialized successfully');
+            } else {
+                console.error('[Firebase] Missing config values');
             }
         }
     } catch (e) {
-        console.error('Firebase Admin init failed', e);
+        console.error('[Firebase] Admin init failed:', e);
     }
 };
 
 const googleLogin = async (req, res) => {
     try {
+        console.log('[GoogleLogin] Request received');
         maybeInitFirebase();
+        
         if (admin.apps.length === 0) {
+            console.error('[GoogleLogin] Firebase Admin not initialized');
             return res.status(500).json({ success: false, message: 'Firebase Admin not configured on server' });
         }
+        
         const { idToken } = req.body;
         if (!idToken) {
+            console.error('[GoogleLogin] Missing idToken');
             return res.json({ success: false, message: 'Missing idToken' });
         }
+        
+        console.log('[GoogleLogin] Verifying token...');
         const decoded = await admin.auth().verifyIdToken(idToken);
+        console.log('[GoogleLogin] Token verified. Email:', decoded.email);
+        
         const email = decoded.email;
         const name = decoded.name || (decoded.email ? decoded.email.split('@')[0] : 'User');
         if (!email) {

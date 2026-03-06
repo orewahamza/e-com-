@@ -49,19 +49,19 @@ const addProduct = async (req, res) => {
         // Since adminAuth middleware verifies token, let's see if we can get ID.
         // If the route uses 'adminAuth', it might decode token.
         // Let's assume we can get userId from req.body.userId (if frontend sends it) or decode it.
-        
+
         // Actually, let's decode token to get ownerId if not present.
         // But better yet, the middleware should attach it.
         // For now, let's try to get it from headers token if not in body.
-        
-        let ownerId = req.body.userId; 
+
+        let ownerId = req.body.userId;
         if (!ownerId && req.headers.token) {
-             try {
-                 const decoded = jwt.verify(req.headers.token, process.env.JWT_SECRET);
-                 ownerId = decoded.id;
-             } catch (e) {
-                 // ignore
-             }
+            try {
+                const decoded = jwt.verify(req.headers.token, process.env.JWT_SECRET);
+                ownerId = decoded.id;
+            } catch (e) {
+                // ignore
+            }
         }
 
         const productName = cleanText(name);
@@ -114,7 +114,7 @@ const addProduct = async (req, res) => {
             );
         } catch (uploadErr) {
             await Promise.all(uploadedPublicIds.map(async (pid) => {
-                try { await cloudinary.uploader.destroy(pid); } catch {}
+                try { await cloudinary.uploader.destroy(pid); } catch { }
             }));
             throw uploadErr;
         }
@@ -140,7 +140,8 @@ const addProduct = async (req, res) => {
 
 
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message })
+        console.error("ADD PRODUCT ERROR:", error);
+        res.status(500).json({ success: false, message: error.message || "An internal error occurred" })
     }
 }
 
@@ -155,7 +156,7 @@ const createProduct = addProduct;
 const listProducts = async (req, res) => {
     try {
         console.log("Fetching all products...");
-        const products = await productModel.find({});
+        const products = await productModel.find({ isPublished: { $ne: false } });
         console.log(`Found ${products.length} products`);
         res.json({ success: true, products });
     } catch (error) {
@@ -181,7 +182,7 @@ const removeProduct = async (req, res) => {
         await Promise.all(urls.map(async (url) => {
             const publicId = extractPublicIdFromUrl(url);
             if (publicId) {
-                try { await cloudinary.uploader.destroy(publicId); } catch {}
+                try { await cloudinary.uploader.destroy(publicId); } catch { }
             }
         }));
         await productModel.findByIdAndDelete(req.body.id);
@@ -202,7 +203,7 @@ const deleteProduct = async (req, res) => {
         await Promise.all(urls.map(async (url) => {
             const publicId = extractPublicIdFromUrl(url);
             if (publicId) {
-                try { await cloudinary.uploader.destroy(publicId); } catch {}
+                try { await cloudinary.uploader.destroy(publicId); } catch { }
             }
         }));
         await productModel.findByIdAndDelete(id);
@@ -282,7 +283,7 @@ const updateProduct = async (req, res) => {
                 );
             } catch (uploadErr) {
                 await Promise.all(uploadedPublicIds.map(async (pid) => {
-                    try { await cloudinary.uploader.destroy(pid); } catch {}
+                    try { await cloudinary.uploader.destroy(pid); } catch { }
                 }));
                 throw uploadErr;
             }
@@ -291,7 +292,7 @@ const updateProduct = async (req, res) => {
             await Promise.all(oldUrls.map(async (url) => {
                 const publicId = extractPublicIdFromUrl(url);
                 if (publicId) {
-                    try { await cloudinary.uploader.destroy(publicId); } catch {}
+                    try { await cloudinary.uploader.destroy(publicId); } catch { }
                 }
             }));
             updates.image = imagesUrl;
@@ -311,7 +312,7 @@ const listUserProducts = async (req, res) => {
         if (!token) {
             return res.json({ success: false, message: 'Not Authorized' });
         }
-        
+
         let userId;
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -326,14 +327,14 @@ const listUserProducts = async (req, res) => {
         }
 
         if (!userId) {
-             // If no userId could be determined (e.g. Super Admin without specific host context)
-             // We might return ALL products? Or NONE?
-             // Since this endpoint is specifically "user-list", let's return only unassigned products?
-             // Or if it's the super admin logging in directly, they might expect everything.
-             // But for now, let's assume we want to filter by ownerId.
-             // If userId is undefined, find({ownerId: undefined}) might match all if not careful.
-             // Let's force a "no match" if no user ID.
-             return res.json({ success: true, products: [] });
+            // If no userId could be determined (e.g. Super Admin without specific host context)
+            // We might return ALL products? Or NONE?
+            // Since this endpoint is specifically "user-list", let's return only unassigned products?
+            // Or if it's the super admin logging in directly, they might expect everything.
+            // But for now, let's assume we want to filter by ownerId.
+            // If userId is undefined, find({ownerId: undefined}) might match all if not careful.
+            // Let's force a "no match" if no user ID.
+            return res.json({ success: true, products: [] });
         }
 
         // Only return products owned by this user
@@ -400,10 +401,12 @@ export const auditAndFixProducts = async (_req, res) => {
     try {
         const report = await auditAll();
         await applyFixes(report);
-        res.json({ success: true, message: 'Audit fixes applied', summary: {
-            total: report.length,
-            fixed: report.filter(r => !r.nameMatchesImage || r.imageCountAfter !== r.imageCountBefore).length
-        }});
+        res.json({
+            success: true, message: 'Audit fixes applied', summary: {
+                total: report.length,
+                fixed: report.filter(r => !r.nameMatchesImage || r.imageCountAfter !== r.imageCountBefore).length
+            }
+        });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }

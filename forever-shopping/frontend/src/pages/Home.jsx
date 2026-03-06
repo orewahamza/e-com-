@@ -10,14 +10,14 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>Home | Forever Shopping</title>
-        <meta name="description" content="Discover the latest trends in fashion at Forever Shopping." />
+        <title>Home | Fash-Shop</title>
+        <meta name="description" content="Discover the latest trends in fashion at Fash-Shop." />
       </Helmet>
-      <Hero/>
-      <LatestCollection/>
-      <BestSeller/>
-      <OurPolicy/>
-      <NewsletterBox/>
+      <Hero />
+      <LatestCollection />
+      <BestSeller />
+      <OurPolicy />
+      <NewsletterBox />
     </div>
   )
 }

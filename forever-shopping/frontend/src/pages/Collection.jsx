@@ -89,8 +89,8 @@ const Collection = () => {
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
       <Helmet>
-        <title>Collection | Forever Shopping</title>
-        <meta name="description" content="Browse our exclusive collection of fashion items." />
+        <title>Collection | Fash-Shop</title>
+        <meta name="description" content="Explore our latest collection of premium apparel at Fash-Shop." />
       </Helmet>
       {/* Filter Options */}
       <div className="min-w-60">
@@ -108,9 +108,8 @@ const Collection = () => {
 
         {/* Catagory Filter */}
         <div
-          className={`border border-brand-blue-400 pl-5 py-3 mt-6 ${
-            showFilter ? "" : "hidden"
-          } sm:block`}
+          className={`border border-brand-blue-400 pl-5 py-3 mt-6 ${showFilter ? "" : "hidden"
+            } sm:block`}
         >
           <p className="mb-3 text-sm font-medium">CATEGORIES</p>
 
@@ -164,58 +163,57 @@ const Collection = () => {
 
         {/* SubCategory Filter */}
         <div
-          className={`border border-brand-blue-400 pl-5 py-3 my-5 ${
-            showFilter ? "" : "hidden"
-          } sm:block`}
+          className={`border border-brand-blue-400 pl-5 py-3 my-5 ${showFilter ? "" : "hidden"
+            } sm:block`}
         >
           <p className="mb-3 text-sm font-medium">TYPE</p>
 
           <div className="flex flex-col gap-2 text-sm font-light text-brand-blue-300">
-             <label className="flex gap-2 items-center cursor-pointer group">
-               <input
-                 className="hidden peer"
-                 type="checkbox"
-                 value={"Topwear"}
-                 onChange={toggleSubCategory}
-               />
-               <div className="w-4 h-4 border border-brand-blue-600 rounded-sm bg-black peer-checked:bg-red-600 peer-checked:border-red-600 flex items-center justify-center transition-all">
-                 <svg className="w-3 h-3 text-white hidden peer-checked:block pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                 </svg>
-               </div>
-               <span className="group-hover:text-red-500 transition-colors">Topwear</span>
-             </label>
+            <label className="flex gap-2 items-center cursor-pointer group">
+              <input
+                className="hidden peer"
+                type="checkbox"
+                value={"Topwear"}
+                onChange={toggleSubCategory}
+              />
+              <div className="w-4 h-4 border border-brand-blue-600 rounded-sm bg-black peer-checked:bg-red-600 peer-checked:border-red-600 flex items-center justify-center transition-all">
+                <svg className="w-3 h-3 text-white hidden peer-checked:block pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span className="group-hover:text-red-500 transition-colors">Topwear</span>
+            </label>
 
-             <label className="flex gap-2 items-center cursor-pointer group">
-               <input
-                 className="hidden peer"
-                 type="checkbox"
-                 value={"Bottomwear"}
-                 onChange={toggleSubCategory}
-               />
-               <div className="w-4 h-4 border border-brand-blue-600 rounded-sm bg-black peer-checked:bg-red-600 peer-checked:border-red-600 flex items-center justify-center transition-all">
-                 <svg className="w-3 h-3 text-white hidden peer-checked:block pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                 </svg>
-               </div>
-               <span className="group-hover:text-red-500 transition-colors">Bottomwear</span>
-             </label>
+            <label className="flex gap-2 items-center cursor-pointer group">
+              <input
+                className="hidden peer"
+                type="checkbox"
+                value={"Bottomwear"}
+                onChange={toggleSubCategory}
+              />
+              <div className="w-4 h-4 border border-brand-blue-600 rounded-sm bg-black peer-checked:bg-red-600 peer-checked:border-red-600 flex items-center justify-center transition-all">
+                <svg className="w-3 h-3 text-white hidden peer-checked:block pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span className="group-hover:text-red-500 transition-colors">Bottomwear</span>
+            </label>
 
-             <label className="flex gap-2 items-center cursor-pointer group">
-               <input
-                 className="hidden peer"
-                 type="checkbox"
-                 value={"Winterwear"}
-                 onChange={toggleSubCategory}
-               />
-               <div className="w-4 h-4 border border-brand-blue-600 rounded-sm bg-black peer-checked:bg-red-600 peer-checked:border-red-600 flex items-center justify-center transition-all">
-                 <svg className="w-3 h-3 text-white hidden peer-checked:block pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                 </svg>
-               </div>
-               <span className="group-hover:text-red-500 transition-colors">Winterwear</span>
-             </label>
-           </div>
+            <label className="flex gap-2 items-center cursor-pointer group">
+              <input
+                className="hidden peer"
+                type="checkbox"
+                value={"Winterwear"}
+                onChange={toggleSubCategory}
+              />
+              <div className="w-4 h-4 border border-brand-blue-600 rounded-sm bg-black peer-checked:bg-red-600 peer-checked:border-red-600 flex items-center justify-center transition-all">
+                <svg className="w-3 h-3 text-white hidden peer-checked:block pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span className="group-hover:text-red-500 transition-colors">Winterwear</span>
+            </label>
+          </div>
         </div>
       </div>
 

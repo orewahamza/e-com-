@@ -57,7 +57,7 @@ function Navbar() {
         </NavLink>
 
         {userType === 'host' && (
-          <NavLink to="/host-panel" className="flex flex-col items-center gap-1 ">
+          <NavLink to="/host" className="flex flex-col items-center gap-1 ">
             <span className="border border-red-600 px-5 text-sm py-1 rounded-full -mt-1 hover:bg-red-900 transition-colors">
               Host Panel
             </span>
@@ -132,9 +132,8 @@ function Navbar() {
 
       {/* sidebar menu for small screen basically for mobile */}
       <div
-        className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-black bg-gradient-to-b from-primary/30 to-secondary/30 transition-all ${
-          visible ? "w-full" : "w-0"
-        }`}
+        className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-black bg-gradient-to-b from-primary/30 to-secondary/30 transition-all ${visible ? "w-full" : "w-0"
+          }`}
       >
         <div className="flex flex-col text-brand-blue-300">
           <div
@@ -181,14 +180,14 @@ function Navbar() {
             <NavLink
               onClick={() => setVisible(false)}
               className="py-2 pl-6 border border-brand-black-950/30 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20"
-              to="/host-panel"
+              to="/host"
             >
               Host Panel
             </NavLink>
           )}
         </div>
       </div>
-      
+
       <SettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} />
     </div>
   );

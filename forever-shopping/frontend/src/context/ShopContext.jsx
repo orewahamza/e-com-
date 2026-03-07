@@ -27,7 +27,7 @@ const ShopContextProvider = (props) => {
   const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
-  const [isGoogleAuth, setIsGoogleAuth] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -178,7 +178,7 @@ const ShopContextProvider = (props) => {
       if (response.data.success) {
         setUserType(response.data.user.type);
         setUserRole(response.data.user.role);
-        setIsGoogleAuth(response.data.user.isGoogleAuth);
+
         setUserEmail(response.data.user.email);
         setUserName(response.data.user.name);
         localStorage.setItem("userRole", response.data.user.role);
@@ -234,8 +234,7 @@ const ShopContextProvider = (props) => {
     setUserType,
     userId,
     setUserId,
-    isGoogleAuth,
-    setIsGoogleAuth,
+
     userEmail,
     setUserEmail,
     userName,

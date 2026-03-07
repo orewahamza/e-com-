@@ -2,8 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { auth, googleProvider } from '../lib/firebase';
-import { signInWithPopup } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -114,26 +112,7 @@ const Login = ({ initialState = 'Login' }) => {
     }
   }
 
-  const onGoogleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const idToken = await result.user.getIdToken();
-      const response = await axios.post(backendUrl + '/api/user/google-login', { idToken });
-      if (response.data.success) {
-        setToken(response.data.token);
-        localStorage.setItem('token', response.data.token);
-        setUserRole(response.data.role);
-        localStorage.setItem('userRole', response.data.role);
-        setUserId(response.data.userId);
-        localStorage.setItem('userId', response.data.userId);
-      } else {
-        toast.error(response.data.message)
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
-    }
-  }
+
 
 
   // Redirect to home page if token is set
@@ -146,12 +125,7 @@ const Login = ({ initialState = 'Login' }) => {
     }
   }, [token])
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('provider') === 'google') {
-      onGoogleSignIn();
-    }
-  }, []);
+
 
 
   return (
@@ -223,7 +197,6 @@ const Login = ({ initialState = 'Login' }) => {
           </div>
 
           <button className='bg-gradient-to-r from-primary to-secondary text-white font-light px-8 py-2 mt-4 hover:brightness-110' aria-label={currentState === 'Login' ? 'Sign in' : 'Create account'}>{currentState === 'Login' ? 'Sign In' : 'Sign Up'}</button>
-          <button type="button" onClick={onGoogleSignIn} className='bg-transparent text-brand-blue-50 border border-brand-blue-50 font-light px-8 py-2 mt-2 hover:bg-brand-blue-900/30 transition-colors' aria-label="Continue with Google">Continue with Google</button>
 
         </form>
       )}

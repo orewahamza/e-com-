@@ -4,7 +4,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { MdEmail, MdLock } from "react-icons/md";
 import { FiLogIn } from "react-icons/fi";
-import { FcGoogle } from "react-icons/fc";
 
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState("");
@@ -34,8 +33,8 @@ const Login = ({ setToken }) => {
       <div className="bg-black shadow-[0_0_15px_rgba(255,0,0,0.3)] border border-red-900 rounded-lg px-8 py-6 max-w-md">
         {/* Text Logo */}
         <div className="flex flex-col items-center justify-center mb-6">
-           <p className="text-3xl font-bold text-red-600 leading-none">fash-shop</p>
-           <p className="text-sm font-semibold text-red-500 tracking-widest uppercase mt-1">HOST PANEL</p>
+          <p className="text-3xl font-bold text-red-600 leading-none">fash-shop</p>
+          <p className="text-sm font-semibold text-red-500 tracking-widest uppercase mt-1">HOST PANEL</p>
         </div>
 
         <h1 className="text-2xl font-bold mb-4 text-center text-red-500">Host Panel</h1>
@@ -79,26 +78,10 @@ const Login = ({ setToken }) => {
           </button>
         </form>
 
-        {/* Divider */}
-        <div className="flex items-center my-4">
-          <div className="flex-1 h-px bg-red-900" />
-          <span className="px-3 text-sm text-red-900">or</span>
-          <div className="flex-1 h-px bg-red-900" />
-        </div>
-
-        {/* Customer options */}
-        <a
-          href={`${frontendUrl}/login?provider=google&redirect=${encodeURIComponent('/host-panel')}`}
-          className="flex items-center justify-center gap-2 w-full py-2 px-4 rounded-md border border-red-900 text-red-500 hover:bg-red-900/20 transition-colors"
-          aria-label="Continue with Google (customer)"
-        >
-          <FcGoogle className="text-xl" />
-          Continue with Google
-        </a>
         <p className="text-center text-sm mt-3">
           New here?{" "}
           <a
-            href={`${frontendUrl}/sign-up?redirect=${encodeURIComponent('/admin-panel')}`}
+            href={`${frontendUrl}/sign-up`}
             className="underline hover:text-brand-blue-600"
             aria-label="Create a customer account"
           >

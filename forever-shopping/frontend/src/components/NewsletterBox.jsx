@@ -14,8 +14,7 @@ const NewsletterBox = () => {
       </p>
 
       <p className="text-brand-blue-300 mt-3">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque,
-        nisi!
+        Be the first to know about our latest collections and exclusive offers.
       </p>
 
       <form

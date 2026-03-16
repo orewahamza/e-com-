@@ -8,8 +8,7 @@ const Footer = () => {
         <div>
           <span className="text-3xl font-bold tracking-wide uppercase bg-gradient-to-r from-red-500 to-blue-500 bg-clip-text text-transparent mb-5 block">fash-shop</span>
           <p className="w-full md:w-2/3 text-brand-blue-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-            delectus nostrum animi eaque temporibus maiores.
+            Fash-Shop is your premier destination for modern fashion. We are dedicated to providing the highest quality apparel with a focus on style, comfort, and sustainability.
           </p>
         </div>
 

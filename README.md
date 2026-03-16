@@ -91,7 +91,7 @@ This project is licensed under the MIT License.
 
 ## 🤝 Contact
 **Hamza** - [@orewahamza](https://github.com/orewahamza)
-Project Link: [https://github.com/orewahamza/e-com-](https://github.com/orewahamza/e-com-)
+Project source code Link: [https://github.com/orewahamza/e-com-](https://github.com/orewahamza/e-com-)
 
 ---
 *⭐ If you like this project, feel free to give it a star!*

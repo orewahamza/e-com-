@@ -34,20 +34,6 @@ const About = () => {
       </div>
 
       <div className='text-xl py-4'>
-        <Title text1={'MULTI-DEVICE'} text2={'EXPERIENCE'} />
-      </div>
-
-      <div className='my-10 flex flex-col items-center gap-12'>
-        <div className='relative w-full max-w-[800px] group transition-all duration-500'>
-            <div className='absolute -inset-1 bg-gradient-brand rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200'></div>
-            <img className='relative rounded-lg shadow-2xl transition duration-500' src={assets.laptop_mockup} alt="laptop_mockup" />
-        </div>
-        <p className='text-center text-brand-blue-300 max-w-[600px]'>
-          Designed to look stunning on every screen. Whether you are shopping from your desktop or on the go with your mobile, Fash-Shop provides a consistent and premium experience.
-        </p>
-      </div>
-
-      <div className='text-xl py-4'>
         <Title text1={'WHY'} text2={'CHOOSE US'} />
       </div>
 

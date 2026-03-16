@@ -2,7 +2,6 @@
 
 Fash-Shop is a sophisticated, full-stack e-commerce platform designed for the modern fashion era. Built with the **MERN Stack (MongoDB, Express, React, Node.js)**, it offers a seamless shopping experience for customers and a robust management system for administrators.
 
-![Banner](https://fash-shop.onrender.com/assets/about_img-C6-7b-9D.png)
 
 ## 🚀 Experience the Live Demo
 **Frontend:** [fash-shop.onrender.com](https://fash-shop.onrender.com/)
@@ -21,8 +20,6 @@ Fash-Shop is a sophisticated, full-stack e-commerce platform designed for the mo
 
 ### 💼 For Administrators
 - **Inventory Management:** Full CRUD operations for products (Add, Edit, Delete).
-- **Order Processing:** Manage customer orders and update shipping statuses.
-- **Analytics Dashboard:** Overview of sales and product performance.
 - **Cloud Media Hosting:** Integrated with **Cloudinary** for high-performance image optimization.
 
 ---
@@ -86,13 +83,6 @@ npm run dev
 ```
 
 ---
-
-## 🔐 Credentials for Demo
-
-| Role | Email | Password |
-| :--- | :--- | :--- |
-| **Admin** | admin@example.com | admin123 |
-| **User** | user@gmail.com | user@123 |
 
 ---
 

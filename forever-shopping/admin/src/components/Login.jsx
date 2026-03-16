@@ -88,7 +88,7 @@ const Login = ({ setToken }) => {
 
         {/* Customer options */}
         <a
-          href={`${frontendUrl}/login?provider=google&redirect=${encodeURIComponent('/host-panel')}`}
+          href={`${frontendUrl}/login?provider=google&redirect=${encodeURIComponent('/host')}`}
           className="flex items-center justify-center gap-2 w-full py-2 px-4 rounded-md border border-red-900 text-red-500 hover:bg-red-900/20 transition-colors"
           aria-label="Continue with Google (customer)"
         >
@@ -98,7 +98,7 @@ const Login = ({ setToken }) => {
         <p className="text-center text-sm mt-3">
           New here?{" "}
           <a
-            href={`${frontendUrl}/sign-up?redirect=${encodeURIComponent('/admin-panel')}`}
+            href={`${frontendUrl}/sign-up?redirect=${encodeURIComponent('/host')}`}
             className="underline hover:text-brand-blue-600"
             aria-label="Create a customer account"
           >

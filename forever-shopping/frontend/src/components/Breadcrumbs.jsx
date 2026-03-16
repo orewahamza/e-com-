@@ -11,7 +11,7 @@ const LABELS = {
   "sign-up": "Sign Up",
   "fash-shop": "fash-shop",
   profile: "Profile",
-  "host-panel": "Host Panel",
+  "host": "Host Panel",
   orders: "Orders",
   "place-order": "Place Order",
   verify: "Verify",

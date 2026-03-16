@@ -56,8 +56,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Montserrat', 'sans-serif'],
+        sans: ['Outfit', 'sans-serif'],
+        heading: ['Outfit', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-brand': 'linear-gradient(90deg, #EF4444 0%, #3B82F6 100%)',

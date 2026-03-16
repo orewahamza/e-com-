@@ -190,19 +190,10 @@ const Product = () => {
 
         <div className="flex flex-col gap-4 border border-brand-blue-600 px-6 py-4 text-sm text-brand-blue-300">
           <p>
-            An e-commerce website is an online platform that facilitates the
-            buying and selling of products or services over the internet. It
-            serves as a virtual marketplace where businesses and individuals can
-            showcase their products, interact with customers, and conduct
-            transactions without the need for a physical presence. E-commerce
-            websites have gained immense popularity due to their convenience,
-            accessibility, and the global reach they offer.
+            Our garments are meticulously designed using high-quality materials to provide a perfect blend of style, comfort, and longevity. We prioritize breathable fabrics and precision stitching to ensure that every item feels as good as it looks, whether you're dressing for a casual day out or a formal event.
           </p>
           <p>
-            E-commerce websites typically display products or services along with
-            detailed descriptions, images, prices, and any available variations
-            (e.g., sizes, colors). Each product usually has its own dedicated
-            page with relevant information.
+            We recommend following the care instructions on the label to maintain the vibrant colors and structural integrity of your clothes. Our commitment to excellence means you can trust Fash-Shop to deliver contemporary fashion that stands the test of time.
           </p>
         </div>
       </div>

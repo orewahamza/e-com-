@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet-async';
 
 const Login = ({ initialState = 'Login' }) => {
   const [currentState, setCurrentState] = useState(initialState);
-  const { token, setToken, navigate, backendUrl, setUserRole, setUserId } = useContext(ShopContext);
+  const { token, setToken, navigate, backendUrl, setUserRole, setUserId, setUserType } = useContext(ShopContext);
 
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -72,6 +72,10 @@ const Login = ({ initialState = 'Login' }) => {
           localStorage.setItem('userRole', response.data.role);
           setUserId(response.data.userId);
           localStorage.setItem('userId', response.data.userId);
+          if (response.data.type) {
+            setUserType(response.data.type);
+            localStorage.setItem('userType', response.data.type);
+          }
 
         } else {
           toast.error(response.data.message)
@@ -100,6 +104,11 @@ const Login = ({ initialState = 'Login' }) => {
           localStorage.setItem('userRole', response.data.role);
           setUserId(response.data.userId);
           localStorage.setItem('userId', response.data.userId);
+
+          if (response.data.type) {
+            setUserType(response.data.type);
+            localStorage.setItem('userType', response.data.type);
+          }
 
         } else {
           toast.error(response.data.message)

@@ -39,7 +39,7 @@ const loginUser = async (req, res) => {
         if (isMatch) {
             const token = createToken(user._id);
             console.log(`[Login] Success for user: ${user._id}`);
-            res.json({ success: true, token, role: user.role, userId: user._id });
+            res.json({ success: true, token, role: user.role, type: user.type, userId: user._id });
         }
 
         // if password is not matched

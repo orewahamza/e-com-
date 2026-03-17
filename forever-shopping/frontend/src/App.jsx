@@ -45,14 +45,21 @@ const ProtectedRoute = ({ children }) => {
 };
 
 const App = () => {
+  const location = useLocation();
+  const isHostPanel = location.pathname.toLowerCase().startsWith('/host');
+
   return (
     <HelmetProvider>
       <ScrollToTop />
-      <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+      <div className={isHostPanel ? "w-full min-h-screen bg-black" : "px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]"}>
         <ToastContainer theme="dark" />
-        <Navbar />
-        <SearchBar />
-        <Breadcrumbs />
+        {!isHostPanel && (
+          <>
+            <Navbar />
+            <SearchBar />
+            <Breadcrumbs />
+          </>
+        )}
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -92,10 +99,10 @@ const App = () => {
             <Route path="/verify" element={<Verify />} />
 
             {/* Not found */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
-        <Footer />
+        {!isHostPanel && <Footer />}
       </div>
     </HelmetProvider>
   );

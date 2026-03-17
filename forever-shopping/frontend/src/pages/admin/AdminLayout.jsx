@@ -16,11 +16,10 @@ const AdminLayout = () => {
   }
 
   return (
-    <div className="bg-black min-h-screen text-red-500 pt-5">
-      <hr className="border-red-900 opacity-30 px-4 sm:px-[5vw]" />
-      <div className="flex w-full mt-5">
+    <div className="bg-black min-h-screen text-red-500">
+      <div className="flex w-full flex-col md:flex-row">
         <AdminSidebar />
-        <div className="flex-1 mx-auto ml-[max(5vw,25px)] mb-8 text-red-500 text-base pr-[5vw]">
+        <div className="flex-1 w-full p-2 sm:p-4 md:p-8 lg:p-10 text-red-500 text-base overflow-x-hidden">
           <Outlet />
         </div>
       </div>

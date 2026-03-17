@@ -59,9 +59,9 @@ const App = () => {
        : 
         <>
           <Navbar setToken={setToken} />
-          <div className="flex w-full">
+          <div className="flex w-full min-h-screen">
             <Sidebar />
-            <div className="w-[70%] mx-auto ml-[max(5vw,25px)] my-8 text-red-500 text-base">
+            <div className="flex-1 p-4 md:p-8 text-red-500 text-base overflow-x-hidden">
               <Routes>
                 <Route path="/" element={<List token={token}/>} /> {/* Default to List or Add */}
                 <Route path="/add" element={<Add token={token}/>} />

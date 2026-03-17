@@ -110,81 +110,106 @@ const List = ({ token }) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2">
-        {/* ------ List Table Title--------- */}
-
-        <div className="hidden md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr_1fr] items-center py-2 px-4 border border-red-900 bg-black text-sm font-medium rounded-t-lg text-red-500">
-          <b>Image</b>
-          <b>Name</b>
-          <b>Category</b>
-          <b>Price</b>
-          <b>Status</b>
-          <b className="text-center">Action</b>
-        </div>
-
-        {/* ------ Product List--------- */}
-
-        {filteredList.map((item, index) => (
-          <div
-            className="grid grid-cols-[1fr_3fr_1fr_1fr_1fr] md:grid-cols-[1fr_3fr_1fr_1fr_1fr_1fr] items-center gap-2 py-3 px-4 border border-t-0 border-red-900 text-sm hover:bg-red-900/20 transition-colors relative"
-            key={index}
-          >
-            <img className="w-12 h-12 object-cover rounded-md border border-red-900" src={item.image[0]} alt="product_image" />
-            <p className="font-medium truncate pr-4 text-red-500">{item.name}</p>
-            <p className="hidden md:block text-red-400">{item.category}</p>
-            <p className="font-medium text-red-500">
-              {currency}
-              {item.price}
-            </p>
-
-            {/* Status Column */}
-            <div className="flex items-center">
-              <span className={`px-2 py-1 rounded-full text-xs font-medium ${item.isPublished !== false ? 'bg-green-900 text-green-300' : 'bg-brand-black-900 text-brand-blue-300'}`}>
-                {item.isPublished !== false ? 'Published' : 'Draft'}
-              </span>
+      {filteredList.length > 0 ? (
+        <div className="w-full overflow-x-auto border border-red-900 rounded-lg bg-black shadow-sm">
+          <div className="min-w-[700px] md:min-w-full">
+            {/* ------ List Table Title--------- */}
+            <div className="grid grid-cols-[1fr_3fr_1fr_1fr_1fr_1fr] items-center py-4 px-6 bg-red-900/10 text-sm font-bold text-red-500 border-b border-red-900">
+              <b>Image</b>
+              <b>Name</b>
+              <b>Category</b>
+              <b>Price</b>
+              <b>Status</b>
+              <b className="text-center">Action</b>
             </div>
 
-            {/* Action Column with Dropdown */}
-            <div className="text-right md:text-center relative">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setActiveMenu(activeMenu === item._id ? null : item._id);
-                }}
-                className="p-2 hover:bg-red-900/30 rounded-full transition-colors"
+            {/* ------ Product List--------- */}
+            {filteredList.map((item, index) => (
+              <div
+                className="grid grid-cols-[1fr_3fr_1fr_1fr_1fr_1fr] items-center py-3 px-6 border-b border-red-900 last:border-0 text-sm hover:bg-red-900/10 transition-colors relative"
+                key={index}
               >
-                {/* Three dots icon */}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-red-500">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                </svg>
-              </button>
-
-              {activeMenu === item._id && (
-                <div className="absolute right-0 top-10 w-48 bg-black rounded-md shadow-lg z-10 border border-red-900 overflow-hidden text-left">
-                  <button
-                    onClick={(e) => { e.stopPropagation(); navigate(`/edit/${item._id}`); }}
-                    className="block w-full px-4 py-2 text-sm text-red-400 hover:bg-red-900/20 text-left"
-                  >
-                    Edit Item
-                  </button>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); toggleStatus(item._id, item.isPublished); }}
-                    className="block w-full px-4 py-2 text-sm text-red-400 hover:bg-red-900/20 text-left"
-                  >
-                    {item.isPublished !== false ? 'Set to Draft' : 'Set to Publish'}
-                  </button>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); removeProduct(item._id); }}
-                    className="block w-full px-4 py-2 text-sm text-red-600 hover:bg-red-900/30 text-left"
-                  >
-                    Delete Item
-                  </button>
+                <img className="w-12 h-12 object-cover rounded-md border border-red-900" src={item.image[0]} alt="product_image" />
+                <div className="pr-4">
+                  <p className="font-medium text-red-500 truncate">{item.name}</p>
                 </div>
-              )}
-            </div>
+                <p className="text-red-400">{item.category}</p>
+                <p className="font-semibold text-red-500">
+                  {currency}{item.price}
+                </p>
+
+                {/* Status Column */}
+                <div>
+                  <span className={`px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-bold ${item.isPublished !== false ? 'bg-green-900/30 text-green-400 border border-green-900' : 'bg-red-900/30 text-red-400 border border-red-900'}`}>
+                    {item.isPublished !== false ? 'Published' : 'Draft'}
+                  </span>
+                </div>
+
+                {/* Action Column */}
+                <div className="text-center relative">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveMenu(activeMenu === item._id ? null : item._id);
+                    }}
+                    className="p-2 hover:bg-red-900/30 rounded-full transition-colors mx-auto block"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-red-500">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                    </svg>
+                  </button>
+
+                  {activeMenu === item._id && (
+                    <div className="absolute right-0 top-10 w-48 bg-black rounded-md shadow-2xl z-20 border border-red-900 overflow-hidden text-left py-1 animate-in fade-in zoom-in duration-200">
+                      <button
+                        onClick={(e) => { e.stopPropagation(); navigate(`/edit/${item._id}`); }}
+                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-400 hover:bg-red-900/30 transition-colors"
+                      >
+                        Edit Item
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); toggleStatus(item._id, item.isPublished); }}
+                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-400 hover:bg-red-900/30 transition-colors"
+                      >
+                        {item.isPublished !== false ? 'Set to Draft' : 'Set to Publish'}
+                      </button>
+                      <div className="h-px bg-red-900/50 my-1"></div>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); removeProduct(item._id); }}
+                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-600 font-bold hover:bg-red-950 transition-colors"
+                      >
+                        Delete Item
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center py-20 bg-black border border-red-900 rounded-lg shadow-sm">
+          <div className="w-20 h-20 bg-red-900/10 flex items-center justify-center rounded-full mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 text-red-500">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10.125 2.25h3.75a.75.75 0 01.75.75v3.75a.75.75 0 01-.75.75h-3.75a.75.75 0 01-.75-.75V3a.75.75 0 01.75-.75zM9 10.125h6M9 13.875h6" />
+            </svg>
+          </div>
+          <h3 className="text-xl font-bold text-red-500 mb-2 font-heading">No Products Found</h3>
+          <p className="text-red-400/60 mb-8 max-w-sm text-center px-4 font-sans leading-relaxed">
+            {list.length === 0 
+              ? "Your inventory is currently empty. Start growing your store by adding your first product today." 
+              : "We couldn't find any products matching your search criteria."}
+          </p>
+          {list.length === 0 && (
+            <button 
+              onClick={() => navigate('/add')}
+              className="bg-red-600 text-black font-bold py-3 px-10 rounded-full shadow-lg hover:bg-red-700 hover:scale-105 transition-all active:scale-95 flex items-center gap-2"
+            >
+              <span>+</span> Add New Product
+            </button>
+          )}
+        </div>
+      )}
     </>
   );
 };

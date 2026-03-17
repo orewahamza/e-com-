@@ -110,11 +110,11 @@ const Add = ({ token }) => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler} className="flex flex-col w-full items-start gap-5 text-red-500 font-medium bg-black p-6 rounded-lg shadow-sm border border-red-900">
-      <div>
+    <form onSubmit={onSubmitHandler} className="flex flex-col w-full items-start gap-5 text-red-500 font-medium bg-black p-4 sm:p-6 rounded-lg shadow-sm border border-red-900 mx-auto max-w-4xl">
+      <div className="w-full">
         <p className="mb-2 text-sm text-red-400">Upload Image</p>
         <div
-          className="flex gap-4"
+          className="flex flex-wrap gap-4"
           onDrop={onDrop}
           onDragOver={onDragOver}
           title="Drag & drop images here"
@@ -122,7 +122,7 @@ const Add = ({ token }) => {
           {[image1, image2, image3, image4].map((img, index) => (
             <label key={index} htmlFor={`image${index + 1}`}>
               <img
-                className="w-24 h-24 object-cover cursor-pointer hover:opacity-80 transition rounded-md border border-red-900 border-dashed bg-gray-900"
+                className="w-20 h-20 sm:w-24 sm:h-24 object-cover cursor-pointer hover:opacity-80 transition rounded-md border border-red-900 border-dashed bg-gray-900"
                 src={!img ? assets.upload_area : URL.createObjectURL(img)}
                 alt="upload_area_image"
               />
@@ -142,7 +142,7 @@ const Add = ({ token }) => {
         <input
           onChange={(e) => setName(e.target.value)}
           value={name}
-          className="w-full max-w-[500px] px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all placeholder-red-800"
+          className="w-full max-w-xl px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all placeholder-red-800"
           type="text"
           placeholder="Type here"
           required
@@ -154,7 +154,7 @@ const Add = ({ token }) => {
         <textarea
           onChange={(e) => setDescription(e.target.value)}
           value={description}
-          className="w-full max-w-[500px] px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all h-32 resize-none placeholder-red-800"
+          className="w-full max-w-xl px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all h-32 resize-none placeholder-red-800"
           type="text"
           placeholder="Write content here"
           required
@@ -162,11 +162,11 @@ const Add = ({ token }) => {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 w-full sm:gap-8">
-        <div className="flex-1 max-w-[150px]">
+        <div className="w-full sm:flex-1 sm:max-w-[200px]">
           <p className="mb-2 text-sm text-red-400">Product Category</p>
           <select
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all"
+            className="w-full px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all cursor-pointer"
           >
             <option value="Men">Men</option>
             <option value="Women">Women</option>
@@ -174,11 +174,11 @@ const Add = ({ token }) => {
           </select>
         </div>
 
-        <div className="flex-1 max-w-[150px]">
+        <div className="w-full sm:flex-1 sm:max-w-[200px]">
           <p className="mb-2 text-sm text-red-400">Sub Category</p>
           <select
             onChange={(e) => setSubCategory(e.target.value)}
-            className="w-full px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all"
+            className="w-full px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all cursor-pointer"
           >
             <option value="Topwear">Topwear</option>
             <option value="Bottomwear">Bottomwear</option>
@@ -186,7 +186,7 @@ const Add = ({ token }) => {
           </select>
         </div>
 
-        <div className="flex-1 max-w-[150px]">
+        <div className="w-full sm:flex-1 sm:max-w-[200px]">
           <p className="mb-2 text-sm text-red-400">Product Price</p>
           <input
             onChange={(e) => setPrice(e.target.value)}
@@ -199,9 +199,9 @@ const Add = ({ token }) => {
         </div>
       </div>
 
-      <div>
+      <div className="w-full">
         <p className="mb-2 text-sm text-red-400">Product Sizes</p>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           {["S", "M", "L", "XL", "XXL"].map((size) => (
             <div
               key={size}
@@ -230,12 +230,12 @@ const Add = ({ token }) => {
           id="isPublished"
           className="w-4 h-4 cursor-pointer accent-[#FF0000]"
         />
-        <label className="cursor-pointer text-sm text-red-400" htmlFor="isPublished">
+        <label className="cursor-pointer text-sm text-red-400 ml-1" htmlFor="isPublished">
           Published (Visible to customers)
         </label>
       </div>
 
-      <div className="flex gap-2 mt-2 items-center">
+      <div className="flex gap-2 mt-1 items-center">
         <input
           onChange={() => setBestseller((prev) => !prev)}
           checked={bestseller}
@@ -243,13 +243,13 @@ const Add = ({ token }) => {
           id="bestseller"
           className="w-4 h-4 cursor-pointer accent-[#FF0000]"
         />
-        <label className="cursor-pointer text-sm text-red-400" htmlFor="bestseller">
+        <label className="cursor-pointer text-sm text-red-400 ml-1" htmlFor="bestseller">
           Add to bestseller
         </label>
       </div>
 
       <button
-        className="w-32 py-3 mt-4 bg-red-600 text-black rounded-md text-sm font-bold hover:bg-red-700 transition duration-300 shadow-md border border-red-600"
+        className="w-full sm:w-48 py-3 mt-4 bg-red-600 text-black rounded-md text-sm font-bold hover:bg-red-700 transition duration-300 shadow-md border border-red-600 active:scale-95"
         type="submit"
       >
         ADD PRODUCT

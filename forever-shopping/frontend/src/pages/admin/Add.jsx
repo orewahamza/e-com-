@@ -110,11 +110,11 @@ const Add = () => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler} className="flex flex-col w-full items-start gap-5 text-red-500 font-medium bg-black p-6 rounded-lg shadow-sm border border-red-900">
-      <div>
+    <form onSubmit={onSubmitHandler} className="flex flex-col w-full items-start gap-5 text-red-500 font-bold bg-black p-4 sm:p-6 rounded-lg shadow-sm border border-red-900 mx-auto max-w-4xl">
+      <div className="w-full">
         <p className="mb-2 text-sm text-red-400">Upload Image</p>
         <div
-          className="flex gap-4"
+          className="flex flex-wrap gap-4"
           onDrop={onDrop}
           onDragOver={onDragOver}
           title="Drag & drop images here"
@@ -122,7 +122,7 @@ const Add = () => {
           {[image1, image2, image3, image4].map((img, index) => (
             <label key={index} htmlFor={`image${index + 1}`}>
               <img
-                className="w-24 h-24 object-cover cursor-pointer hover:opacity-80 transition rounded-md border border-red-900 border-dashed bg-gray-900"
+                className="w-20 h-20 sm:w-24 sm:h-24 object-cover cursor-pointer hover:opacity-80 transition rounded-md border border-red-900 border-dashed bg-gray-900 shadow-inner"
                 src={!img ? assets.upload_area : URL.createObjectURL(img)}
                 alt="upload_area_image"
               />
@@ -142,9 +142,9 @@ const Add = () => {
         <input
           onChange={(e) => setName(e.target.value)}
           value={name}
-          className="w-full max-w-[500px] px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all placeholder-red-800"
+          className="w-full max-w-xl px-4 py-2.5 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/30 focus:border-[#FF0000] transition-all placeholder-red-800"
           type="text"
-          placeholder="Type here"
+          placeholder="Enter product title"
           required
         />
       </div>
@@ -154,19 +154,19 @@ const Add = () => {
         <textarea
           onChange={(e) => setDescription(e.target.value)}
           value={description}
-          className="w-full max-w-[500px] px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all h-32 resize-none placeholder-red-800"
+          className="w-full max-w-xl px-4 py-2.5 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/30 focus:border-[#FF0000] transition-all h-32 resize-none placeholder-red-800"
           type="text"
-          placeholder="Write content here"
+          placeholder="Describe your product details"
           required
         />
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 w-full sm:gap-8">
-        <div className="flex-1 max-w-[150px]">
+        <div className="w-full sm:flex-1 sm:max-w-[200px]">
           <p className="mb-2 text-sm text-red-400">Product Category</p>
           <select
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all"
+            className="w-full px-4 py-2.5 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/30 focus:border-[#FF0000] transition-all cursor-pointer"
           >
             <option value="Men">Men</option>
             <option value="Women">Women</option>
@@ -174,11 +174,11 @@ const Add = () => {
           </select>
         </div>
 
-        <div className="flex-1 max-w-[150px]">
+        <div className="w-full sm:flex-1 sm:max-w-[200px]">
           <p className="mb-2 text-sm text-red-400">Sub Category</p>
           <select
             onChange={(e) => setSubCategory(e.target.value)}
-            className="w-full px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all"
+            className="w-full px-4 py-2.5 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/30 focus:border-[#FF0000] transition-all cursor-pointer"
           >
             <option value="Topwear">Topwear</option>
             <option value="Bottomwear">Bottomwear</option>
@@ -186,22 +186,22 @@ const Add = () => {
           </select>
         </div>
 
-        <div className="flex-1 max-w-[150px]">
+        <div className="w-full sm:flex-1 sm:max-w-[200px]">
           <p className="mb-2 text-sm text-red-400">Product Price</p>
           <input
             onChange={(e) => setPrice(e.target.value)}
             value={price}
-            className="w-full px-4 py-2 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/50 focus:border-[#FF0000] transition-all placeholder-red-800"
+            className="w-full px-4 py-2.5 border border-red-900 bg-gray-900 text-red-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF0000]/30 focus:border-[#FF0000] transition-all placeholder-red-800 font-bold"
             type="number"
-            placeholder="25"
+            placeholder="0.00"
             required
           />
         </div>
       </div>
 
-      <div>
+      <div className="w-full">
         <p className="mb-2 text-sm text-red-400">Product Sizes</p>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           {["S", "M", "L", "XL", "XXL"].map((size) => (
             <div
               key={size}
@@ -212,8 +212,9 @@ const Add = () => {
                     : [...prev, size]
                 )
               }
-              className={`${sizes.includes(size) ? "bg-red-900/30 border-[#FF0000] text-[#FF0000]" : "bg-gray-900 border-red-900 text-red-400 hover:bg-red-900/20"
-                } border px-4 py-2 cursor-pointer rounded-md transition-all duration-200 ease-in-out font-medium text-sm`}
+              className={`${
+                sizes.includes(size) ? "bg-red-600 border-[#FF0000] text-black" : "bg-gray-900 border-red-900 text-red-400 hover:bg-red-900/20"
+              } border px-5 py-2.5 cursor-pointer rounded-md transition-all duration-200 ease-in-out font-black text-xs uppercase tracking-tighter`}
             >
               {size}
             </div>
@@ -221,34 +222,34 @@ const Add = () => {
         </div>
       </div>
 
-      <div className="flex gap-2 mt-2 items-center">
+      <div className="flex gap-3 mt-2 items-center">
         <input
           onChange={() => setIsPublished((prev) => !prev)}
           checked={isPublished}
           type="checkbox"
           id="isPublished"
-          className="w-4 h-4 cursor-pointer accent-[#FF0000]"
+          className="w-5 h-5 cursor-pointer accent-[#FF0000]"
         />
-        <label className="cursor-pointer text-sm text-red-400" htmlFor="isPublished">
+        <label className="cursor-pointer text-sm text-red-400 font-bold select-none" htmlFor="isPublished">
           Published (Visible to customers)
         </label>
       </div>
 
-      <div className="flex gap-2 mt-2 items-center">
+      <div className="flex gap-3 mt-1 items-center">
         <input
           onChange={() => setBestseller((prev) => !prev)}
           checked={bestseller}
           type="checkbox"
           id="bestseller"
-          className="w-4 h-4 cursor-pointer accent-[#FF0000]"
+          className="w-5 h-5 cursor-pointer accent-[#FF0000]"
         />
-        <label className="cursor-pointer text-sm text-red-400" htmlFor="bestseller">
+        <label className="cursor-pointer text-sm text-red-400 font-bold select-none" htmlFor="bestseller">
           Add to bestseller
         </label>
       </div>
 
       <button
-        className="w-32 py-3 mt-4 bg-red-600 text-black rounded-md text-sm font-bold hover:bg-red-700 transition duration-300 shadow-md border border-red-600"
+        className="w-full sm:w-64 py-4 mt-4 bg-red-600 text-black rounded-lg text-sm font-black hover:bg-red-700 transition duration-300 shadow-[0_0_15px_rgba(255,0,0,0.2)] border border-red-600 active:scale-95 uppercase tracking-widest"
         type="submit"
       >
         ADD PRODUCT

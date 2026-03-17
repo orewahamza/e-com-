@@ -21,15 +21,21 @@ function Navbar() {
     userRole,
     userType,
     userId,
-    backendUrl
+    backendUrl,
+    setUserRole,
+    setUserType
   } = useContext(ShopContext);
 
   const logout = () => {
-    navigate("/login");
     localStorage.removeItem("token");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("userType");
+    localStorage.removeItem("userId");
     setToken("");
-    // toast.success("Logout successful");
+    setUserRole("user");
+    setUserType("user");
     setCartItems({});
+    navigate("/login");
   };
 
   return (
@@ -56,7 +62,7 @@ function Navbar() {
           <hr className="w-2/4 border-none h-[1.5px] bg-red-500 hidden" />
         </NavLink>
 
-        {userType === 'host' && (
+        {token && userType === 'host' && (
           <NavLink to="/host" className="flex flex-col items-center gap-1 ">
             <span className="border border-red-600 px-5 text-sm py-1 rounded-full -mt-1 hover:bg-red-900 transition-colors">
               Host Panel
@@ -176,7 +182,7 @@ function Navbar() {
           >
             Contact
           </NavLink>
-          {userType === 'host' && (
+          {token && userType === 'host' && (
             <div className="mt-4 mx-4">
               <NavLink
                 onClick={() => setVisible(false)}

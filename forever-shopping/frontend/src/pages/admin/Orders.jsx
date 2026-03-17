@@ -122,10 +122,15 @@ const Orders = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
               </svg>
             </div>
-            <h3 className="text-2xl md:text-5xl font-black text-red-500 mb-4 md:mb-6 tracking-[0.2em] md:tracking-widest uppercase text-center px-4">No Orders Yet</h3>
-            <p className="text-red-400/50 max-w-sm md:max-w-md text-center px-6 md:px-10 leading-relaxed md:leading-loose font-bold text-[10px] md:text-base uppercase tracking-tighter">
-              Your sales journey starts here. Once customers place orders, they will appear in this professional queue.
-            </p>
+            <h3 className="text-2xl md:text-5xl font-black text-red-500 mb-6 md:mb-10 tracking-[0.2em] md:tracking-widest uppercase text-center px-4">No Orders Yet</h3>
+            <div className="flex flex-col gap-3 md:gap-4 items-center">
+              <p className="text-red-400/60 max-w-sm md:max-w-md text-center px-6 md:px-10 leading-loose font-black text-[11px] md:text-lg uppercase tracking-[0.2em]">
+                Your sales journey starts here.
+              </p>
+              <p className="text-red-500/30 max-w-xs md:max-w-lg text-center px-8 md:px-12 leading-relaxed font-bold text-[9px] md:text-sm uppercase tracking-[0.3em]">
+                Once customers place orders, they will appear in this professional queue.
+              </p>
+            </div>
           </div>
         )}
       </div>

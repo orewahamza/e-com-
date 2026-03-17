@@ -98,11 +98,11 @@ const Cart = () => {
           return (
             <div
               key={index}
-              className="py-4 border-t border-b text-brand-blue-300 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4"
+              className="py-4 border-t border-b text-brand-blue-300 grid grid-cols-[3fr_1.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-2 sm:gap-4"
             >
-              <div className="flex items-start gap-6">
-                <div className="w-16 sm:w-20 bg-gradient-brand p-[1px] rounded-sm flex-shrink-0">
-                  <div className="bg-white rounded-sm overflow-hidden">
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="w-12 sm:w-20 bg-gradient-brand p-[1px] rounded-sm flex-shrink-0">
+                  <div className="bg-white rounded-sm overflow-hidden text-black">
                     <img
                       className="w-full"
                       src={productData.image[0]}
@@ -111,29 +111,28 @@ const Cart = () => {
                   </div>
                 </div>
 
-                <div>
-                  <p className="text-xs sm:text-lg font-medium text-brand-blue-50">
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs sm:text-lg font-bold text-brand-blue-50 truncate">
                     {productData.name}
                   </p>
-                  <div className="flex items-center gap-5 mt-2">
-                    <p>
-                      {currency}
-                      {productData.price}
+                  <div className="flex items-center gap-3 sm:gap-5 mt-2">
+                    <p className="text-[10px] sm:text-base font-bold text-red-500">
+                      {currency}{productData.price}
                     </p>
-                    <p className="px-2 sm:px-3 sm:py-1 border border-brand-blue-600 bg-black text-white">
+                    <p className="px-1.5 sm:px-3 py-0.5 border border-brand-blue-600 bg-black text-white text-[10px] sm:text-xs">
                       {item.size}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center border border-brand-blue-600 rounded max-w-[100px]">
+              <div className="flex items-center border border-brand-blue-600 rounded overflow-hidden">
                 <button 
                   onClick={() => {
                     const newQty = Math.max(1, item.quantity - 1);
                     updateQuantity(item._id, item.size, newQty);
                   }}
-                  className="px-2 sm:px-3 py-1 bg-black text-white hover:bg-brand-blue-900 border-r border-brand-blue-600 transition-colors"
+                  className="px-2 sm:px-3 py-1 bg-black text-white hover:bg-brand-blue-900 border-r border-brand-blue-600 transition-colors text-sm"
                 >-</button>
                 <input
                   onChange={(e) =>
@@ -145,14 +144,14 @@ const Cart = () => {
                           Number(e.target.value)
                         )
                   }
-                  className="w-full bg-black text-white text-center focus:outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none text-sm"
+                  className="w-full bg-black text-white text-center focus:outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none text-xs sm:text-sm min-w-[20px]"
                   type="number"
                   min={1}
                   value={item.quantity}
                 />
                 <button 
                   onClick={() => updateQuantity(item._id, item.size, item.quantity + 1)}
-                  className="px-2 sm:px-3 py-1 bg-black text-white hover:bg-brand-blue-900 border-l border-brand-blue-600 transition-colors"
+                  className="px-2 sm:px-3 py-1 bg-black text-white hover:bg-brand-blue-900 border-l border-brand-blue-600 transition-colors text-sm"
                 >+</button>
               </div>
 
